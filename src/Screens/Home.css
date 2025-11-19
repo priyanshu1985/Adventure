@@ -1,0 +1,278 @@
+/* Home.css */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.home-page {
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.text-adventure {
+  background: linear-gradient(90deg, #fff, #f0f0f0, #fff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.search-bar {
+  max-width: 600px;
+}
+
+.search-bar .form-control {
+  border-radius: 50px 0 0 50px !important;
+  padding: 15px 25px;
+}
+
+.search-bar .btn {
+  border-radius: 0 50px 50px 0 !important;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border: none;
+  font-weight: 600;
+}
+
+.btn-hero {
+  border: 2px solid white;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 12px 30px;
+  transition: all 0.3s ease;
+}
+
+.btn-hero:hover {
+  background: white;
+  color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.hero-image-container {
+  position: relative;
+}
+
+.hero-image {
+  width: 100%;
+  border-radius: 30px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+  filter: brightness(0.95);
+}
+
+/* Floating Stats */
+.floating-stats {
+  margin-top: -60px;
+  position: relative;
+  z-index: 2;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.stat-card h3 {
+  color: #667eea;
+  font-size: 2rem;
+}
+
+.stat-card:hover {
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+}
+
+/* Categories Section */
+.categories-section {
+  padding: 80px 0;
+}
+
+.category-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 15px !important;
+  background: white;
+}
+
+.category-card:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+}
+
+.category-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+/* Adventures Section */
+.adventures-section {
+  padding: 80px 0;
+}
+
+.adventure-card {
+  border-radius: 20px !important;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.adventure-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+.adventure-image {
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.difficulty-badge {
+  top: 15px;
+  right: 15px;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.adventure-card .btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.adventure-card .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Testimonials Section */
+.testimonials-section {
+  padding: 80px 0;
+}
+
+.testimonial-card {
+  border-radius: 20px !important;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 80px 0;
+}
+
+.cta-content {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-content::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  animation: pulse 15s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.cta-content .btn-light {
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-bar .form-control,
+  .search-bar .btn {
+    border-radius: 50px !important;
+  }
+
+  .floating-stats {
+    margin-top: 30px;
+  }
+
+  .stat-card h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #667eea;
+}

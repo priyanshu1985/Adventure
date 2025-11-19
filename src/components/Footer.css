@@ -1,0 +1,244 @@
+/* Footer.css */
+.footer {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #ffffff;
+  margin-top: 80px;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
+  opacity: 0.3;
+}
+
+.newsletter-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.newsletter-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.newsletter-text {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 0;
+}
+
+.newsletter-input {
+  max-width: 500px;
+  margin-left: auto;
+}
+
+.newsletter-field {
+  border: none;
+  border-radius: 50px 0 0 50px;
+  padding: 15px 25px;
+  font-size: 1rem;
+}
+
+.newsletter-field:focus {
+  box-shadow: none;
+  border: none;
+}
+
+.newsletter-btn {
+  background: white;
+  color: #667eea;
+  border: none;
+  border-radius: 0 50px 50px 0;
+  padding: 15px 35px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.newsletter-btn:hover {
+  background: #f0f0f0;
+  color: #764ba2;
+  transform: translateX(5px);
+}
+
+/* Main Footer */
+.footer-main {
+  padding: 80px 0 30px;
+}
+
+.footer-brand .brand-name {
+  font-size: 2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.brand-icon {
+  font-size: 2.5rem;
+}
+
+.footer-description {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.contact-icon {
+  font-size: 1.2rem;
+}
+
+.footer-heading {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: white;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: #667eea;
+  transform: translateX(5px);
+}
+
+.certification-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.badge-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  font-size: 1.3rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-icon:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.copyright-text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .newsletter-title {
+    font-size: 1.5rem;
+  }
+
+  .newsletter-text {
+    font-size: 1rem;
+  }
+
+  .newsletter-input {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .footer-main {
+    padding: 60px 0 30px;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .copyright-text {
+    text-align: center !important;
+  }
+}
