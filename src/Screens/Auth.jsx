@@ -1,13 +1,18 @@
 // AuthPage.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, InputGroup } from "react-bootstrap";
 import { motion, AnimatePresence } from "framer-motion";
+import config from "../config.js";
 import "./Auth.css";
 
 const AuthPage = () => {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,22 +25,61 @@ const AuthPage = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setError(""); // Clear error when user starts typing
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isLogin) {
-      console.log("Login:", {
-        email: formData.email,
-        password: formData.password,
+    setLoading(true);
+    setError("");
+
+    try {
+      const endpoint = isLogin
+        ? config.ENDPOINTS.AUTH.LOGIN
+        : config.ENDPOINTS.AUTH.REGISTER;
+      const payload = isLogin
+        ? { email: formData.email, password: formData.password }
+        : {
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+          };
+
+      const response = await fetch(`${config.API_BASE_URL}${endpoint}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
       });
-    } else {
-      console.log("Signup:", formData);
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Store token in localStorage if login
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+        }
+
+        console.log(`${isLogin ? "Login" : "Sign up"} successful:`, data);
+        navigate("/home");
+      } else {
+        setError(data.message || "Something went wrong");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setError(
+        "Failed to connect to server. Please check if backend is running."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
+    setError(""); // Clear any existing errors
     setFormData({
       name: "",
       email: "",
@@ -71,7 +115,7 @@ const AuthPage = () => {
               }`}
               initial={false}
               animate={{
-                x: isLogin ? 0 : "100%",
+                x: isLogin ? "0%" : "100%",
               }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
             >
@@ -179,7 +223,11 @@ const AuthPage = () => {
             </motion.div>
 
             {/* Right Panel - Forms */}
-            <div className="auth-panel form-panel">
+            <div
+              className={`auth-panel form-panel ${
+                !isLogin ? "signup-mode" : ""
+              }`}
+            >
               <AnimatePresence mode="wait">
                 {isLogin ? (
                   <motion.div
@@ -200,6 +248,17 @@ const AuthPage = () => {
                       <h2>Welcome Back</h2>
                       <p>Log in to continue your adventure</p>
                     </motion.div>
+
+                    {error && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="alert alert-danger mb-3"
+                        style={{ fontSize: "14px" }}
+                      >
+                        {error}
+                      </motion.div>
+                    )}
 
                     <Form onSubmit={handleSubmit} className="auth-form">
                       <motion.div
@@ -273,11 +332,15 @@ const AuthPage = () => {
                         transition={{ delay: 0.6 }}
                       >
                         <motion.div
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
+                          whileHover={{ scale: loading ? 1 : 1.02 }}
+                          whileTap={{ scale: loading ? 1 : 0.98 }}
                         >
-                          <Button type="submit" className="submit-btn w-100">
-                            Log In
+                          <Button
+                            type="submit"
+                            className="submit-btn w-100"
+                            disabled={loading}
+                          >
+                            {loading ? "Logging In..." : "Log In"}
                           </Button>
                         </motion.div>
                       </motion.div>
@@ -329,6 +392,17 @@ const AuthPage = () => {
                       <h2>Join the Adventure</h2>
                       <p>Create your account and start exploring</p>
                     </motion.div>
+
+                    {error && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="alert alert-danger mb-3"
+                        style={{ fontSize: "14px" }}
+                      >
+                        {error}
+                      </motion.div>
+                    )}
 
                     <Form onSubmit={handleSubmit} className="auth-form">
                       <motion.div
@@ -450,11 +524,15 @@ const AuthPage = () => {
                         transition={{ delay: 0.8 }}
                       >
                         <motion.div
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
+                          whileHover={{ scale: loading ? 1 : 1.02 }}
+                          whileTap={{ scale: loading ? 1 : 0.98 }}
                         >
-                          <Button type="submit" className="submit-btn w-100">
-                            Create Account
+                          <Button
+                            type="submit"
+                            className="submit-btn w-100"
+                            disabled={loading}
+                          >
+                            {loading ? "Creating Account..." : "Create Account"}
                           </Button>
                         </motion.div>
                       </motion.div>
