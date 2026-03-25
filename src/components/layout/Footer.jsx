@@ -2,7 +2,7 @@
 import React from "react";
 import { Container, Row, Col, Form, Button, InputGroup } from "react-bootstrap";
 import { motion } from "framer-motion";
-import "./Footer.css";
+import "../../styles/Footer.css";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

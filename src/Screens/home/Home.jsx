@@ -9,11 +9,15 @@ import {
   Form,
   InputGroup,
 } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Home.css";
+import "../../styles/Home.css";
+import Header from "../../components/layout/Header.jsx";
+import Footer from "../../components/layout/Footer.jsx";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
   // Animation Variants
@@ -334,7 +338,12 @@ const Home = () => {
           >
             <div className="d-flex justify-content-between align-items-center mb-5">
               <h2 className="fw-bold mb-0">Featured Adventures</h2>
-              <Button variant="outline-primary">View All →</Button>
+              <Button
+                variant="outline-primary"
+                onClick={() => navigate("/adventures")}
+              >
+                View All →
+              </Button>
             </div>
 
             <motion.div
@@ -386,7 +395,13 @@ const Home = () => {
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
-                            <Button variant="primary" className="w-100 mt-3">
+                            <Button
+                              variant="primary"
+                              className="w-100 mt-3"
+                              onClick={() =>
+                                navigate("/booking", { state: { adventure } })
+                              }
+                            >
                               Book Now
                             </Button>
                           </motion.div>
@@ -508,4 +523,14 @@ const Home = () => {
   );
 };
 
-export default Home;
+const HomeScreen = () => {
+  return (
+    <>
+      <Header />
+      <Home />
+      <Footer />
+    </>
+  );
+};
+
+export default HomeScreen;

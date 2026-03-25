@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, InputGroup } from "react-bootstrap";
 import { motion, AnimatePresence } from "framer-motion";
-import config from "../config.js";
-import "./Auth.css";
+import config from "../../config.js";
+import "../../styles/auth.css";
 
 const AuthPage = () => {
   const navigate = useNavigate();
@@ -70,7 +70,7 @@ const AuthPage = () => {
     } catch (error) {
       console.error("Error:", error);
       setError(
-        "Failed to connect to server. Please check if backend is running."
+        "Failed to connect to server. Please check if backend is running.",
       );
     } finally {
       setLoading(false);
